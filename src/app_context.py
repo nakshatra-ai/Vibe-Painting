@@ -9,6 +9,7 @@ class AppContext:
         self.canvas_manager = canvas_manager
         self.window_name = window_name
         self.is_fullscreen = False
+        self.should_exit = False
 
     def toggle_fullscreen(self):
         """Toggles fullscreen state for the primary window."""

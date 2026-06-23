@@ -42,6 +42,7 @@ def main():
     try:
         # 1. Initialize Webcam with visual loading feedback
         draw_startup_message(window_name, "Initializing Camera...")
+        time.sleep(0.8)
         
         cap = cv2.VideoCapture(CAMERA_INDEX)
         cap.set(cv2.CAP_PROP_FRAME_WIDTH, FRAME_WIDTH)
@@ -92,6 +93,7 @@ def main():
 
         # 2. Initialize Hand Tracker with visual loading feedback
         draw_startup_message(window_name, "Loading Hand Tracking...")
+        time.sleep(0.8)
         try:
             tracker = HandTracker(max_hands=2, detection_confidence=0.7, tracking_confidence=0.7)
         except Exception as e:
@@ -146,9 +148,11 @@ def main():
         print("--------------------------------------------------")
 
         while True:
-            # Check if native window closed (Alt+F4 / 'X' click)
+            # Check if native window closed (Alt+F4 / 'X' click) or exit flag set
             if cv2.getWindowProperty(window_name, cv2.WND_PROP_VISIBLE) < 1:
                 print("Window closed by user. Exiting...")
+                break
+            if app_context.should_exit:
                 break
                 
             curr_time = time.time()

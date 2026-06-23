@@ -84,9 +84,8 @@ def trigger_button_action(btn, hand_label, canvas_manager, app_context):
             app_context.toggle_fullscreen()
             print("Fullscreen toggled")
         elif btn["val"] == "exit":
-            import sys
             print("Exit button clicked. Shutting down...")
-            sys.exit(0)
+            app_context.should_exit = True
 
 def mouse_click_handler(event, x, y, flags, param):
     """
